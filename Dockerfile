@@ -25,6 +25,6 @@ RUN echo '#!/bin/sh' > /start.sh && \
 
 # Configuration Nginx template avec placeholder
 RUN echo 'server { listen PORT_PLACEHOLDER; root /usr/share/nginx/html; index index.html; location / { try_files $uri $uri/ /index.html; } }' > /etc/nginx/conf.d/default.conf.template
-tib
+
 EXPOSE $PORT
 CMD ["/start.sh"]
