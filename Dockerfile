@@ -7,7 +7,7 @@ COPY script.js /usr/share/nginx/html/
 COPY config.js /usr/share/nginx/html/
 COPY utils.js /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
-COPY hajj-2026.pdf /usr/share/nginx/html/
+COPY hajj-2026.jpg /usr/share/nginx/html/
 
 # Script de démarrage qui substitue la variable PORT
 RUN echo '#!/bin/sh' > /start.sh && \
