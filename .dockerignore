@@ -1,0 +1,15 @@
+# Fichiers à ignorer lors du build Docker
+.git
+.gitignore
+README.md
+INTEGRATION.md
+EXEMPLES.md
+test.html
+*.log
+.DS_Store
+Thumbs.db
+node_modules
+.env
+.env.local
+.env.production
+.env.development

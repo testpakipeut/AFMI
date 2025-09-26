@@ -1,0 +1,33 @@
+{
+  "name": "afmi-website",
+  "version": "1.0.0",
+  "description": "Site web de l'Association des Femmes Maliennes pour l'Initiative (AFMI)",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Build completed - Static files ready'",
+    "test": "echo 'Tests completed'"
+  },
+  "keywords": [
+    "afmi",
+    "association",
+    "femmes",
+    "maliennes",
+    "gabon",
+    "libreville",
+    "humanitaire",
+    "don",
+    "pèlerinage"
+  ],
+  "author": "AFMI - Association des Femmes Maliennes pour l'Initiative",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/testpakipeut/AFMI.git"
+  },
+  "homepage": "https://testpakipeut.github.io/AFMI/",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
