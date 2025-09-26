@@ -9,6 +9,7 @@ COPY config.js /usr/share/nginx/html/
 COPY utils.js /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY hajj-2026.jpg /usr/share/nginx/html/
+COPY logo.jpg /usr/share/nginx/html/
 COPY scolaires/ /usr/share/nginx/html/scolaires/
 
 # Script de démarrage qui substitue la variable PORT
