@@ -1,0 +1,481 @@
+/* Styles personnalisés pour l'application AFMI */
+
+/* Variables CSS pour les couleurs AFMI */
+:root {
+    --afmi-green: #059669;
+    --afmi-gold: #D97706;
+    --afmi-red: #DC2626;
+    --afmi-blue: #1D4ED8;
+    --afmi-light-green: #ECFDF5;
+    --afmi-light-gold: #FEF3C7;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Polices personnalisées */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #374151;
+}
+
+/* Amélioration de la lisibilité pour les utilisateurs maliens */
+.text-large {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-xl-custom {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+}
+
+/* Styles pour les boutons AFMI */
+.btn-afmi {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center;
+}
+
+.btn-afmi-primary {
+    @apply btn-afmi bg-green-600 text-white hover:bg-green-700 hover:shadow-lg transform hover:-translate-y-0.5;
+}
+
+.btn-afmi-secondary {
+    @apply btn-afmi bg-orange-500 text-white hover:bg-orange-600 hover:shadow-lg transform hover:-translate-y-0.5;
+}
+
+.btn-afmi-outline {
+    @apply btn-afmi border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white;
+}
+
+/* Animation de chargement pour les boutons */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Gradient personnalisé pour le hero */
+.hero-gradient {
+    background: linear-gradient(135deg, var(--afmi-green) 0%, #10B981 50%, var(--afmi-gold) 100%);
+    position: relative;
+}
+
+.hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.hero-gradient > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Effets de survol pour les cartes */
+.card-hover {
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.card-hover:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.card-icon {
+    transition: transform var(--transition-normal);
+}
+
+/* Styles pour les témoignages */
+.testimonial-card {
+    @apply bg-white rounded-xl p-6 shadow-lg;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--afmi-green);
+    opacity: 0.2;
+    font-family: Georgia, serif;
+}
+
+.testimonial-quote {
+    @apply text-gray-700 italic text-lg leading-relaxed;
+    position: relative;
+    z-index: 2;
+}
+
+/* Styles pour la navigation */
+.nav-link {
+    @apply text-gray-700 hover:text-green-600 font-medium transition-colors duration-200;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: var(--afmi-green);
+    transition: all var(--transition-normal);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Styles pour le formulaire */
+.form-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg transition-all duration-200;
+    @apply focus:ring-2 focus:ring-green-500 focus:border-transparent;
+}
+
+.form-input:focus {
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.form-input.error {
+    @apply border-red-500;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+}
+
+/* Animation pour les éléments qui apparaissent */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Styles pour les statistiques */
+.stat-counter {
+    @apply text-4xl font-bold text-green-600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Styles pour les icônes de réseaux sociaux */
+.social-icon {
+    @apply w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300;
+    @apply hover:transform hover:scale-110 hover:shadow-lg;
+}
+
+.social-facebook {
+    @apply bg-blue-600 hover:bg-blue-700;
+}
+
+.social-twitter {
+    @apply bg-blue-400 hover:bg-blue-500;
+}
+
+.social-instagram {
+    @apply bg-pink-600 hover:bg-pink-700;
+}
+
+.social-whatsapp {
+    @apply bg-green-500 hover:bg-green-600;
+}
+
+/* Styles pour la galerie */
+.gallery-item {
+    @apply aspect-square rounded-lg overflow-hidden cursor-pointer;
+    transition: all var(--transition-normal);
+    background: linear-gradient(45deg, var(--afmi-green), var(--afmi-gold));
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.gallery-overlay {
+    @apply absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center;
+    @apply opacity-0 hover:opacity-100 transition-opacity duration-300;
+}
+
+/* Styles pour les badges/tags */
+.badge {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-green {
+    @apply bg-green-100 text-green-800;
+}
+
+.badge-blue {
+    @apply bg-blue-100 text-blue-800;
+}
+
+.badge-purple {
+    @apply bg-purple-100 text-purple-800;
+}
+
+.badge-pink {
+    @apply bg-pink-100 text-pink-800;
+}
+
+.badge-red {
+    @apply bg-red-100 text-red-800;
+}
+
+.badge-cyan {
+    @apply bg-cyan-100 text-cyan-800;
+}
+
+.badge-orange {
+    @apply bg-orange-100 text-orange-800;
+}
+
+.badge-indigo {
+    @apply bg-indigo-100 text-indigo-800;
+}
+
+/* Styles pour les vidéos responsives */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.video-container iframe,
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Styles pour les notifications/toasts */
+.toast {
+    @apply fixed top-4 right-4 bg-white rounded-lg shadow-xl p-4 z-50;
+    @apply transform translate-x-full transition-transform duration-300;
+    max-width: 400px;
+}
+
+.toast.show {
+    @apply transform translate-x-0;
+}
+
+.toast-success {
+    @apply border-l-4 border-green-500;
+}
+
+.toast-error {
+    @apply border-l-4 border-red-500;
+}
+
+.toast-warning {
+    @apply border-l-4 border-yellow-500;
+}
+
+/* Styles pour l'accessibilité */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus visible pour l'accessibilité */
+.focus-visible:focus {
+    @apply outline-none ring-2 ring-green-500 ring-offset-2;
+}
+
+/* Styles pour les appareils tactiles */
+@media (hover: none) and (pointer: coarse) {
+    .card-hover:hover {
+        transform: none;
+    }
+    
+    .btn-afmi:hover {
+        transform: none;
+    }
+}
+
+/* Styles pour l'impression */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .print-break {
+        page-break-before: always;
+    }
+    
+    .hero-gradient {
+        background: var(--afmi-green) !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
+
+/* Styles pour les écrans haute résolution */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-gradient {
+        background-attachment: fixed;
+    }
+}
+
+/* Animation de chargement de la page */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid var(--afmi-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Styles pour le mode sombre (optionnel) */
+@media (prefers-color-scheme: dark) {
+    .auto-dark {
+        @apply bg-gray-900 text-white;
+    }
+    
+    .auto-dark .card-hover {
+        @apply bg-gray-800;
+    }
+    
+    .auto-dark .form-input {
+        @apply bg-gray-800 border-gray-700 text-white;
+    }
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 640px) {
+    .hero-gradient {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    
+    .text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+    }
+    
+    .text-6xl {
+        font-size: 3rem;
+        line-height: 1;
+    }
+    
+    .card-hover {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Animation de défilement fluide */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Styles pour les éléments interactifs */
+button, a, input, textarea, select {
+    touch-action: manipulation;
+}
+
+/* Amélioration des performances */
+.card-hover,
+.btn-afmi,
+.gallery-item {
+    will-change: transform;
+}
+
+/* Styles pour les indicateurs de chargement */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

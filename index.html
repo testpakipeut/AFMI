@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFMI - Association des Femmes Maliennes pour l'Initiative</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'afmi-green': '#059669',
+                        'afmi-gold': '#D97706',
+                        'afmi-red': '#DC2626',
+                        'afmi-blue': '#1D4ED8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="h-10 w-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-sm">AFMI</div>
+                    <span class="ml-3 text-xl font-bold text-afmi-green">AFMI</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-home mr-2"></i>Accueil
+                    </a>
+                    <a href="#actions" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-hands-helping mr-2"></i>Nos Actions
+                    </a>
+                    <a href="#temoignages" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-comments mr-2"></i>Témoignages
+                    </a>
+                    <a href="#don" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-heart mr-2"></i>Faire un Don
+                    </a>
+                    <a href="#galerie" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-images mr-2"></i>Galerie
+                    </a>
+                    <a href="#contact" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-phone mr-2"></i>Contact
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-afmi-green">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#accueil" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-home mr-2"></i>Accueil
+                </a>
+                <a href="#actions" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-hands-helping mr-2"></i>Nos Actions
+                </a>
+                <a href="#temoignages" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-comments mr-2"></i>Témoignages
+                </a>
+                <a href="#don" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-heart mr-2"></i>Faire un Don
+                </a>
+                <a href="#galerie" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-images mr-2"></i>Galerie
+                </a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-phone mr-2"></i>Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-gradient text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Bienvenue à l'AFMI
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                Association des Femmes Maliennes pour l'Initiative — entraide, solidarité, foi
+            </p>
+            
+            <!-- Video Section -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-8 max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold mb-4 flex items-center justify-center">
+                    <i class="fas fa-video mr-3 text-afmi-gold"></i>
+                    Dernière action : 2 femmes envoyées en pèlerinage
+                </h2>
+                <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                    <!-- Vidéo Facebook 1 - Pèlerinage -->
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D557274745564725&show_text=false&width=560&height=315" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:none;overflow:hidden" 
+                            scrolling="no" 
+                            frameborder="0" 
+                            allowfullscreen="true" 
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#don" class="bg-afmi-gold hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center justify-center">
+                    <i class="fas fa-heart mr-2"></i>💳 Faire un don
+                </a>
+                <a href="#contact" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center justify-center">
+                    <i class="fas fa-phone mr-2"></i>📞 Nous contacter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dernières Actions -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nos dernières actions</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-green-50 rounded-lg">
+                    <i class="fas fa-kaaba text-4xl text-afmi-green mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">🕋 Aide au pèlerinage</h3>
+                    <p class="text-gray-600">2 femmes maliennes accompagnées à la Mecque</p>
+                </div>
+                <div class="text-center p-6 bg-orange-50 rounded-lg">
+                    <i class="fas fa-utensils text-4xl text-afmi-gold mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">🍛 Distribution de vivres</h3>
+                    <p class="text-gray-600">30 familles aidées pendant le Ramadan</p>
+                </div>
+                <div class="text-center p-6 bg-blue-50 rounded-lg">
+                    <i class="fas fa-graduation-cap text-4xl text-afmi-blue mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">🎓 Aide scolaire</h3>
+                    <p class="text-gray-600">15 enfants soutenus en septembre</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Actions Détaillées -->
+    <section id="actions" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+                <i class="fas fa-hands-helping mr-3 text-afmi-green"></i>
+                Nos Actions
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Colis alimentaires -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-box text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Distribution de colis alimentaires</h3>
+                        <p class="text-gray-600 mb-4">Aide alimentaire régulière aux familles dans le besoin, particulièrement pendant le Ramadan et les périodes difficiles.</p>
+                        <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Action prioritaire</span>
+                    </div>
+                </div>
+
+                <!-- Bourses d'étude -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Octroi de bourses d'étude</h3>
+                        <p class="text-gray-600 mb-4">Soutien financier pour l'éducation des enfants et jeunes, frais de scolarité, fournitures et uniformes.</p>
+                        <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Éducation</span>
+                    </div>
+                </div>
+
+                <!-- Aide aux nécessiteux -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-hand-holding-heart text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Aide aux plus nécessiteux</h3>
+                        <p class="text-gray-600 mb-4">Assistance directe aux personnes en situation de précarité, aide d'urgence et accompagnement social.</p>
+                        <span class="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">Urgence</span>
+                    </div>
+                </div>
+
+                <!-- Orphelinat -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center">
+                        <i class="fas fa-child text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Soutien à l'orphelinat</h3>
+                        <p class="text-gray-600 mb-4">Prise en charge des enfants orphelins, hébergement, nourriture, éducation et suivi médical.</p>
+                        <span class="inline-block bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">Enfance</span>
+                    </div>
+                </div>
+
+                <!-- Visite médecin -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-stethoscope text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Consultations médicales</h3>
+                        <p class="text-gray-600 mb-4">Organisation de consultations médicales gratuites et prise en charge des frais de santé pour les plus démunis.</p>
+                        <span class="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">Santé</span>
+                    </div>
+                </div>
+
+                <!-- Forage -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
+                        <i class="fas fa-tint text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Projets de forage</h3>
+                        <p class="text-gray-600 mb-4">Construction de puits et forages pour faciliter l'accès à l'eau potable dans les communautés rurales.</p>
+                        <span class="inline-block bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm font-medium">Infrastructure</span>
+                    </div>
+                </div>
+
+                <!-- Pèlerinage -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                        <i class="fas fa-kaaba text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Aide au pèlerinage</h3>
+                        <p class="text-gray-600 mb-4">Accompagnement financier et logistique pour permettre aux femmes d'accomplir le pèlerinage à la Mecque.</p>
+                        <span class="inline-block bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">Spiritualité</span>
+                    </div>
+                </div>
+
+                <!-- Assises spirituelles -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center">
+                        <i class="fas fa-mosque text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Assises spirituelles</h3>
+                        <p class="text-gray-600 mb-4">Organisation de rencontres spirituelles, conférences religieuses et moments de partage communautaire.</p>
+                        <span class="inline-block bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-medium">Spiritualité</span>
+                    </div>
+                </div>
+
+                <!-- Formation et autonomisation -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                        <i class="fas fa-users text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Formation et autonomisation</h3>
+                        <p class="text-gray-600 mb-4">Programmes de formation professionnelle et d'autonomisation économique des femmes maliennes.</p>
+                        <span class="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Formation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section id="temoignages" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+                <i class="fas fa-comments mr-3 text-afmi-green"></i>
+                Témoignages
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 rounded-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-15 h-15 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-lg mr-4" style="width: 60px; height: 60px;">A</div>
+                        <div>
+                            <h3 class="font-bold text-lg">Aminata D.</h3>
+                            <p class="text-gray-600">Bénéficiaire - Pèlerinage 2024</p>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-700 italic">
+                        "Grâce à l'AFMI, j'ai pu réaliser mon rêve d'aller à la Mecque. Cette expérience a transformé ma vie spirituelle. Merci infiniment à toute l'équipe."
+                    </blockquote>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-15 h-15 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-lg mr-4" style="width: 60px; height: 60px;">F</div>
+                        <div>
+                            <h3 class="font-bold text-lg">Fatoumata S.</h3>
+                            <p class="text-gray-600">Mère de famille aidée</p>
+                        </div>
+                    </div>
+                    <blockquote class="text-gray-700 italic">
+                        "Les colis alimentaires de l'AFMI nous ont aidés pendant les moments difficiles. Mes enfants ont pu continuer à aller à l'école grâce à votre soutien."
+                    </blockquote>
+                </div>
+            </div>
+
+            <!-- Section vidéo témoignages -->
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-bold mb-6">Vidéos témoignages</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                        <!-- Vidéo Facebook 2 - Témoignage 1 -->
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D293050052394588&show_text=true&width=560&height=315" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:none;overflow:hidden" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                allowfullscreen="true" 
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    </div>
+                    <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                        <!-- Vidéo Facebook 3 - Témoignage 2 -->
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D641462156961627&show_text=true&width=560&height=315" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:none;overflow:hidden" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                allowfullscreen="true" 
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <!-- Vidéo supplémentaire -->
+                <div class="mt-8">
+                    <h4 class="text-xl font-bold mb-4">Action spéciale AFMI</h4>
+                    <div class="aspect-video bg-black rounded-lg overflow-hidden max-w-4xl mx-auto">
+                        <!-- Vidéo Facebook 4 - Action spéciale -->
+                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fref%3Dsearch%26v%3D1272697753480527%26external_log_id%3D6c9c39f5-288a-4215-9452-2ca9d8f8728e%26q%3Dafmi&show_text=true&width=560&height=315" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:none;overflow:hidden" 
+                                scrolling="no" 
+                                frameborder="0" 
+                                allowfullscreen="true" 
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Don -->
+    <section id="don" class="py-16 bg-gradient-to-br from-afmi-green to-emerald-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-8">
+                <i class="fas fa-heart mr-3"></i>
+                💳 Faire un Don
+            </h2>
+            <p class="text-xl mb-12">Votre générosité fait la différence dans la vie des femmes maliennes</p>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+                <!-- Mobile Money -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 card-hover text-center">
+                    <i class="fas fa-mobile-alt text-5xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Mobile Money</h3>
+                    <p class="mb-6 text-lg">Orange Money • Moov Money</p>
+                    <button class="bg-afmi-gold hover:bg-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                        Donner par Mobile Money
+                    </button>
+                </div>
+
+                <!-- PayPal -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 card-hover text-center">
+                    <i class="fab fa-paypal text-5xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">PayPal</h3>
+                    <p class="mb-6 text-lg">Don sécurisé en ligne</p>
+                    <button class="bg-afmi-gold hover:bg-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                        Donner via PayPal
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 text-center max-w-2xl mx-auto">
+                <p class="text-lg opacity-90">
+                    💝 Tous les dons sont utilisés directement pour nos actions humanitaires
+                </p>
+                <p class="text-sm opacity-75 mt-2">
+                    Merci pour votre générosité et votre confiance
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie -->
+    <section id="galerie" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+                <i class="fas fa-images mr-3 text-afmi-green"></i>
+                📸 Galerie
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Photos placeholder -->
+                <div class="aspect-square bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-kaaba text-4xl text-white"></i>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-box text-4xl text-white"></i>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-graduation-cap text-4xl text-white"></i>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-child text-4xl text-white"></i>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-stethoscope text-4xl text-white"></i>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-tint text-4xl text-white"></i>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-users text-4xl text-white"></i>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-lg flex items-center justify-center card-hover cursor-pointer">
+                    <i class="fas fa-mosque text-4xl text-white"></i>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button class="bg-afmi-green hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                    Voir plus de photos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+                <i class="fas fa-phone mr-3 text-afmi-green"></i>
+                📞 Contact
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Informations de contact -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Contactez-nous</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="bg-afmi-green text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Téléphone</p>
+                                <p class="text-gray-600">+241 XX XX XX XX</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-green-500 text-white p-3 rounded-full mr-4">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">WhatsApp</p>
+                                <p class="text-gray-600">+241 XX XX XX XX</p>
+                                <a href="https://wa.me/241XXXXXXXX" class="text-green-600 hover:text-green-700 font-medium">
+                                    Écrire sur WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-blue-500 text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-gray-600">contact@afmi-gabon.org</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="bg-gray-600 text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Adresse</p>
+                                <p class="text-gray-600">Libreville, Gabon</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-4">Suivez-nous</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de contact -->
+                <div class="bg-gray-50 rounded-lg p-8">
+                    <h3 class="text-2xl font-bold mb-6">Envoyez-nous un message</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="nom" class="block text-sm font-medium text-gray-700 mb-2">Nom complet</label>
+                            <input type="text" id="nom" name="nom" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="telephone" class="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-afmi-green hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-xs mr-3">AFMI</div>
+                        <span class="text-xl font-bold">AFMI</span>
+                    </div>
+                    <p class="text-gray-400">Association des Femmes Maliennes pour l'Initiative — entraide, solidarité, foi.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Nos Actions</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Colis alimentaires</a></li>
+                        <li><a href="#" class="hover:text-white">Bourses d'étude</a></li>
+                        <li><a href="#" class="hover:text-white">Aide au pèlerinage</a></li>
+                        <li><a href="#" class="hover:text-white">Consultations médicales</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Liens utiles</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#accueil" class="hover:text-white">Accueil</a></li>
+                        <li><a href="#actions" class="hover:text-white">Nos Actions</a></li>
+                        <li><a href="#don" class="hover:text-white">Faire un don</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📞 +241 XX XX XX XX</li>
+                        <li>✉️ contact@afmi-gabon.org</li>
+                        <li>📍 Libreville, Gabon</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 AFMI - Association des Femmes Maliennes pour l'Initiative. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Configuration simple pour éviter les erreurs
+        console.log('🌟 AFMI - Démarrage de l\'application');
+        
+        // Navigation mobile simple
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ DOM chargé');
+            
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    console.log('📱 Menu mobile togglé');
+                });
+            }
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Test des boutons de don
+            document.querySelectorAll('#don button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent.trim();
+                    console.log('💳 Bouton cliqué:', buttonText);
+                    
+                    if (buttonText.includes('Mobile Money')) {
+                        alert('💳 Mobile Money:\n\n📱 Orange Money:\nComposez: #144*1*1#\nNuméro: +223 70 12 34 56\n\n📱 Moov Money:\nComposez: #155*1*1#\nNuméro: +223 70 12 34 56\n\n💡 Suivez les instructions à l\'écran pour faire votre don');
+                    } else if (buttonText.includes('PayPal')) {
+                        // Configuration PayPal avancée
+                        const paypalConfig = {
+                            email: 'donations@afmi-gabon.org',
+                            buttonId: 'VOTRE_BOUTON_ID', // À remplacer par votre ID PayPal
+                            amount: '25', // Montant par défaut (optionnel)
+                            currency: 'EUR'
+                        };
+                        
+                        const paypalUrl = `https://www.paypal.com/donate/?hosted_button_id=${paypalConfig.buttonId}&amount=${paypalConfig.amount}&currency_code=${paypalConfig.currency}`;
+                        
+                        const confirmed = confirm(`💳 PayPal Don:\n\n📧 Email: ${paypalConfig.email}\n💰 Montant suggéré: ${paypalConfig.amount}€\n🌐 Voulez-vous être redirigé vers PayPal ?`);
+                        
+                        if (confirmed) {
+                            window.open(paypalUrl, '_blank');
+                            // Analytics (optionnel)
+                            console.log('📊 Don PayPal initié:', paypalConfig);
+                        }
+                    }
+                });
+            });
+            
+            // Test formulaire de contact
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('📧 Formulaire soumis');
+                    alert('✅ Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+                    this.reset();
+                });
+            }
+            
+            console.log('🎉 Application AFMI prête !');
+        });
+        
+        // Gestion des erreurs
+        window.addEventListener('error', function(e) {
+            console.error('❌ Erreur JavaScript:', e.error);
+        });
+        
+        console.log('🛠️ Scripts chargés');
+    </script>
+</body>
+</html>
