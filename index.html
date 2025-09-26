@@ -49,6 +49,9 @@
                     <a href="#galerie" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
                         <i class="fas fa-images mr-2"></i>Galerie
                     </a>
+                    <a href="#actualites" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>Actualités
+                    </a>
                     <a href="#contact" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
                         <i class="fas fa-phone mr-2"></i>Contact
                     </a>
@@ -80,6 +83,9 @@
                 </a>
                 <a href="#galerie" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
                     <i class="fas fa-images mr-2"></i>Galerie
+                </a>
+                <a href="#actualites" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-newspaper mr-2"></i>Actualités
                 </a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
                     <i class="fas fa-phone mr-2"></i>Contact
@@ -445,6 +451,108 @@
         </div>
     </section>
 
+    <!-- Actualités -->
+    <section id="actualites" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+                <i class="fas fa-newspaper mr-3 text-afmi-green"></i>
+                📰 Actualités AFMI
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Card Actualité -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">Flyer AFMI</h3>
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2 text-afmi-green"></i>
+                                    Publié le 26 septembre 2024
+                                </p>
+                            </div>
+                            <div class="flex space-x-3">
+                                <button onclick="downloadPDF()" class="bg-afmi-green hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Télécharger
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-6">
+                            Découvrez notre dernier flyer avec toutes les informations sur les actions de l'AFMI, 
+                            nos projets en cours et comment nous aider à faire la différence dans la vie des femmes maliennes.
+                        </p>
+                        
+                        <!-- PDF Viewer -->
+                        <div id="pdf-viewer">
+                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-800">Aperçu du document</h4>
+                                    <span class="text-sm text-gray-500">flyers.pdf</span>
+                                </div>
+                            </div>
+                            
+                            <div class="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden">
+                                <iframe 
+                                    src="flyers.pdf#toolbar=1&navpanes=0&scrollbar=1" 
+                                    width="100%" 
+                                    height="100%" 
+                                    class="border-0"
+                                    title="Flyer AFMI">
+                                    <p class="text-center text-gray-600 p-8">
+                                        <i class="fas fa-file-pdf text-4xl mb-4 text-red-500"></i><br>
+                                        Votre navigateur ne supporte pas l'affichage des PDF.<br>
+                                        <a href="flyers.pdf" target="_blank" class="text-afmi-green hover:text-green-700 font-semibold">
+                                            Cliquez ici pour ouvrir le PDF
+                                        </a>
+                                    </p>
+                                </iframe>
+                            </div>
+                            
+                            <div class="mt-4 text-center">
+                                <p class="text-sm text-gray-500 mb-3">
+                                    💡 Utilisez les contrôles ci-dessus pour naviguer dans le document
+                                </p>
+                                <a href="flyers.pdf" target="_blank" class="inline-flex items-center text-afmi-green hover:text-green-700 font-semibold">
+                                    <i class="fas fa-external-link-alt mr-2"></i>
+                                    Ouvrir dans un nouvel onglet
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Informations supplémentaires -->
+                <div class="mt-8 bg-afmi-light-green rounded-lg p-6">
+                    <h4 class="text-lg font-semibold text-afmi-green mb-3 flex items-center">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        À propos de ce document
+                    </h4>
+                    <ul class="text-gray-700 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Contient toutes nos actions récentes
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Informations sur les dons et contributions
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Témoignages et photos de nos bénéficiaires
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Coordonnées de contact mises à jour
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -676,6 +784,17 @@
                     this.reset();
                 });
             }
+            
+            // Fonctions pour la section Actualités
+            window.downloadPDF = function() {
+                const link = document.createElement('a');
+                link.href = 'flyers.pdf';
+                link.download = 'flyers.pdf';
+                link.click();
+                
+                // Analytics (optionnel)
+                console.log('📊 PDF téléchargé: flyers.pdf');
+            };
             
             console.log('🎉 Application AFMI prête !');
         });
