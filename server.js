@@ -320,7 +320,11 @@ async function startServer() {
         }
         
         // Initialisation de la base de données
-        await initializeDatabase();
+        const dbInitialized = await initializeDatabase();
+        if (!dbInitialized) {
+            console.error('❌ Impossible d\'initialiser la base de données');
+            process.exit(1);
+        }
         
         // Démarrage du serveur
         app.listen(PORT, () => {

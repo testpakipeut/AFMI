@@ -781,7 +781,10 @@
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             
+            console.log('🔍 Éléments menu:', { mobileMenuBtn, mobileMenu });
+            
             if (mobileMenuBtn && mobileMenu) {
+                console.log('✅ Éléments menu trouvés, ajout des événements');
                 mobileMenuBtn.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
                     console.log('📱 Menu mobile togglé');
@@ -807,6 +810,11 @@
                         icon.classList.add('fa-bars');
                     });
                 });
+            } else {
+                console.error('❌ Éléments menu non trouvés:', {
+                    mobileMenuBtn: !!mobileMenuBtn,
+                    mobileMenu: !!mobileMenu
+                });
             }
             
             // Smooth scrolling
@@ -821,6 +829,11 @@
                             behavior: 'smooth',
                             block: 'start'
                         });
+            } else {
+                console.error('❌ Éléments menu non trouvés:', {
+                    mobileMenuBtn: !!mobileMenuBtn,
+                    mobileMenu: !!mobileMenu
+                });
                     }
                 });
             });
