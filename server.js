@@ -52,8 +52,14 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Serveur AFMI actif' });
 });
 
+// Route catch-all pour servir index.html
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
 // Démarrage
 app.listen(PORT, () => {
     console.log(`🚀 Serveur AFMI démarré sur le port ${PORT}`);
     console.log(`📊 API: http://localhost:${PORT}/api/messages`);
+    console.log(`🌐 Frontend: http://localhost:${PORT}`);
 });
