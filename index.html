@@ -379,7 +379,7 @@
                 <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 card-hover text-center">
                     <i class="fas fa-mobile-alt text-5xl mb-6"></i>
                     <h3 class="text-2xl font-bold mb-4">Mobile Money</h3>
-                    <p class="mb-6 text-lg">Orange Money • Moov Money</p>
+                    <p class="mb-6 text-lg">Orange Money • Moov Money • Airtel Money</p>
                     <button class="bg-afmi-gold hover:bg-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
                         Donner par Mobile Money
                     </button>
@@ -495,22 +495,42 @@
                             
                             <div class="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden">
                                 <iframe 
-                                    src="flyers.pdf#toolbar=1&navpanes=0&scrollbar=1" 
+                                    src="flyers.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
                                     width="100%" 
                                     height="100%" 
                                     class="border-0"
-                                    title="Flyer AFMI">
-                                    <p class="text-center text-gray-600 p-8">
+                                    title="Flyer AFMI"
+                                    loading="lazy">
+                                    <div class="text-center text-gray-600 p-8">
                                         <i class="fas fa-file-pdf text-4xl mb-4 text-red-500"></i><br>
-                                        Votre navigateur ne supporte pas l'affichage des PDF.<br>
-                                        <a href="flyers.pdf" target="_blank" class="text-afmi-green hover:text-green-700 font-semibold">
-                                            Cliquez ici pour ouvrir le PDF
+                                        <p class="mb-4">Votre navigateur ne supporte pas l'affichage des PDF.</p>
+                                        <a href="flyers.pdf" target="_blank" class="bg-afmi-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+                                            <i class="fas fa-external-link-alt mr-2"></i>
+                                            Ouvrir le PDF
                                         </a>
-                                    </p>
+                                    </div>
                                 </iframe>
                             </div>
                             
-                            <div class="mt-4 text-center">
+                            <!-- Version mobile du PDF -->
+                            <div class="md:hidden mt-4">
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                    <h5 class="font-semibold text-blue-800 mb-2 flex items-center">
+                                        <i class="fas fa-mobile-alt mr-2"></i>
+                                        Version mobile
+                                    </h5>
+                                    <p class="text-blue-700 text-sm mb-3">
+                                        Pour une meilleure expérience sur mobile, ouvrez le PDF dans un nouvel onglet :
+                                    </p>
+                                    <a href="flyers.pdf" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors inline-flex items-center">
+                                        <i class="fas fa-external-link-alt mr-2"></i>
+                                        Ouvrir le PDF
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Version desktop -->
+                            <div class="hidden md:block mt-4 text-center">
                                 <p class="text-sm text-gray-500 mb-3">
                                     💡 Utilisez les contrôles ci-dessus pour naviguer dans le document
                                 </p>
@@ -725,6 +745,27 @@
                 mobileMenuBtn.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
                     console.log('📱 Menu mobile togglé');
+                    
+                    // Animation de l'icône hamburger
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                });
+                
+                // Fermer le menu mobile quand on clique sur un lien
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
                 });
             }
             
@@ -751,19 +792,18 @@
                     console.log('💳 Bouton cliqué:', buttonText);
                     
                     if (buttonText.includes('Mobile Money')) {
-                        alert('💳 Mobile Money:\n\n📱 Orange Money:\nComposez: #144*1*1#\nNuméro: +223 70 12 34 56\n\n📱 Moov Money:\nComposez: #155*1*1#\nNuméro: +223 70 12 34 56\n\n💡 Suivez les instructions à l\'écran pour faire votre don');
+                        alert('💳 Mobile Money:\n\n📱 Orange Money:\nComposez: #144*1*1#\nNuméro: +241 XX XX XX XX\n\n📱 Moov Money:\nComposez: #155*1*1#\nNuméro: +241 XX XX XX XX\n\n📱 Airtel Money:\nComposez: #126*1*1#\nNuméro: +241 XX XX XX XX\n\n💡 Suivez les instructions à l\'écran pour faire votre don');
                     } else if (buttonText.includes('PayPal')) {
                         // Configuration PayPal avancée
                         const paypalConfig = {
                             email: 'donations@afmi-gabon.org',
                             buttonId: 'VOTRE_BOUTON_ID', // À remplacer par votre ID PayPal
-                            amount: '25', // Montant par défaut (optionnel)
                             currency: 'EUR'
                         };
                         
-                        const paypalUrl = `https://www.paypal.com/donate/?hosted_button_id=${paypalConfig.buttonId}&amount=${paypalConfig.amount}&currency_code=${paypalConfig.currency}`;
+                        const paypalUrl = `https://www.paypal.com/donate/?hosted_button_id=${paypalConfig.buttonId}&currency_code=${paypalConfig.currency}`;
                         
-                        const confirmed = confirm(`💳 PayPal Don:\n\n📧 Email: ${paypalConfig.email}\n💰 Montant suggéré: ${paypalConfig.amount}€\n🌐 Voulez-vous être redirigé vers PayPal ?`);
+                        const confirmed = confirm(`💳 PayPal Don:\n\n📧 Email: ${paypalConfig.email}\n🌐 Voulez-vous être redirigé vers PayPal ?`);
                         
                         if (confirmed) {
                             window.open(paypalUrl, '_blank');

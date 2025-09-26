@@ -23,11 +23,15 @@ const AFMI_CONFIG = {
         // Mobile Money
         orangeMoney: {
             shortCode: '#144*1*1#',
-            number: '70 12 34 56'
+            number: '+241 XX XX XX XX'
         },
         moovMoney: {
             shortCode: '#155*1*1#', 
-            number: '70 12 34 56'
+            number: '+241 XX XX XX XX'
+        },
+        airtelMoney: {
+            shortCode: '#126*1*1#',
+            number: '+241 XX XX XX XX'
         },
         
         // PayPal
@@ -44,8 +48,8 @@ const AFMI_CONFIG = {
             accountName: 'AFMI - Association des Femmes Maliennes'
         },
 
-        // Montants suggérés (en euros)
-        suggestedAmounts: [25, 50, 100, 200]
+        // Montants suggérés (en euros) - Supprimé pour l'association
+        // suggestedAmounts: [25, 50, 100, 200]
     },
 
     // Vidéos et médias
