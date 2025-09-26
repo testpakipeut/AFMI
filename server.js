@@ -4,38 +4,25 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
-const { getConfig } = require('./database/config');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuration de la base de données
-const dbConfig = getConfig(process.env.NODE_ENV || 'development');
-const pool = new Pool(dbConfig);
-
-// Middleware de sécurité
-app.use(helmet());
-app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:8080',
-    credentials: true
-}));
-
-// Rate limiting pour éviter le spam
-const messageLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // Maximum 5 messages par IP toutes les 15 minutes
-    message: {
-        error: 'Trop de messages envoyés. Veuillez attendre 15 minutes.',
-        retryAfter: 15 * 60
-    },
-    standardHeaders: true,
-    legacyHeaders: false
+// Configuration de la base de données Railway
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL || 'postgresql://postgres:BliobFePjYilkHPJwWwUNAoERJznYWPN@shortline.proxy.rlwy.net:22154/railway',
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// Middleware simple
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Servir les fichiers statiques (HTML, CSS, JS, PDF)
+app.use(express.static('.'));
 
 // Fonction pour tester la connexion à la base de données
 async function testConnection() {
@@ -54,19 +41,36 @@ async function testConnection() {
 // Fonction pour créer les tables si elles n'existent pas
 async function initializeDatabase() {
     try {
-        const fs = require('fs');
-        const path = require('path');
-        const schemaPath = path.join(__dirname, 'schema.sql');
-        const schema = fs.readFileSync(schemaPath, 'utf8');
-        
+        console.log('🔧 Initialisation de la base de données...');
         const client = await pool.connect();
-        await client.query(schema);
-        client.release();
         
-        console.log('✅ Base de données initialisée avec succès');
+        // Créer la table messages directement
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS messages (
+                id SERIAL PRIMARY KEY,
+                nom VARCHAR(100) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                telephone VARCHAR(20),
+                sujet VARCHAR(255) NOT NULL,
+                message TEXT NOT NULL,
+                statut VARCHAR(20) DEFAULT 'nouveau',
+                metadata JSONB,
+                ip_address INET,
+                user_agent TEXT,
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            );
+        `);
+        
+        // Créer les index
+        await client.query(`CREATE INDEX IF NOT EXISTS idx_messages_email ON messages(email);`);
+        await client.query(`CREATE INDEX IF NOT EXISTS idx_messages_created_at ON messages(created_at DESC);`);
+        
+        client.release();
+        console.log('✅ Tables créées avec succès');
         return true;
+        
     } catch (error) {
-        console.error('❌ Erreur lors de l\'initialisation de la base de données:', error.message);
+        console.error('❌ Erreur lors de l\'initialisation:', error.message);
         return false;
     }
 }
@@ -90,7 +94,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 // Route pour envoyer un message
-app.post('/api/messages', messageLimiter, async (req, res) => {
+app.post('/api/messages', async (req, res) => {
     try {
         const { nom, email, telephone, sujet, message } = req.body;
         

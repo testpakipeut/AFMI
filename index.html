@@ -493,16 +493,17 @@
                                 </div>
                             </div>
                             
-                            <!-- PDF Viewer - Version améliorée pour mobile -->
+                            <!-- PDF Viewer - Version optimisée pour mobile -->
                             <div class="aspect-[4/3] md:aspect-[4/3] aspect-[3/4] bg-gray-200 rounded-lg overflow-hidden">
                                 <iframe 
-                                    src="hajj-2026.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH&zoom=FitH" 
+                                    src="hajj-2026.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH&zoom=FitH&mobile=1&embed=1" 
                                     width="100%" 
                                     height="100%" 
                                     class="border-0"
                                     title="Hajj 2026"
                                     loading="lazy"
-                                    allowfullscreen>
+                                    allowfullscreen
+                                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
                                     <div class="text-center text-gray-600 p-8">
                                         <i class="fas fa-file-pdf text-4xl mb-4 text-red-500"></i><br>
                                         <p class="mb-4">Votre navigateur ne supporte pas l'affichage des PDF.</p>
@@ -516,23 +517,26 @@
                             
                             <!-- Options mobiles améliorées -->
                             <div class="md:hidden mt-4">
-                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                                    <h5 class="font-semibold text-blue-800 mb-2 flex items-center">
+                                <div class="bg-gradient-to-r from-blue-50 to-green-50 border-2 border-blue-300 rounded-lg p-4 shadow-lg">
+                                    <h5 class="font-bold text-blue-800 mb-2 flex items-center text-lg">
                                         <i class="fas fa-mobile-alt mr-2"></i>
-                                        Options mobiles
+                                        📱 Options mobiles
                                     </h5>
-                                    <p class="text-blue-700 text-sm mb-3">
+                                    <p class="text-blue-700 text-sm mb-4 font-medium">
                                         Si le PDF ne s'affiche pas correctement ci-dessus, utilisez ces options :
                                     </p>
-                                    <div class="space-y-2">
-                                        <a href="hajj-2026.pdf" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors inline-flex items-center w-full justify-center">
-                                            <i class="fas fa-external-link-alt mr-2"></i>
+                                    <div class="space-y-3">
+                                        <a href="hajj-2026.pdf" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition-colors inline-flex items-center w-full justify-center shadow-md">
+                                        <i class="fas fa-external-link-alt mr-2"></i>
                                             Ouvrir dans un nouvel onglet
                                         </a>
-                                        <button onclick="downloadPDF()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors inline-flex items-center w-full justify-center">
+                                        <button onclick="downloadPDF()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-bold transition-colors inline-flex items-center w-full justify-center shadow-md">
                                             <i class="fas fa-download mr-2"></i>
                                             Télécharger le PDF
                                         </button>
+                                    </div>
+                                    <div class="mt-3 text-xs text-gray-600 text-center">
+                                        💡 Conseil : Sur mobile, l'ouverture dans un nouvel onglet fonctionne mieux
                                     </div>
                                 </div>
                             </div>
@@ -878,15 +882,38 @@
                 const pdfIframe = document.querySelector('iframe[src*=".pdf"]');
                 
                 if (isMobile && pdfIframe) {
-                    // Ajouter des paramètres spécifiques pour mobile
-                    const currentSrc = pdfIframe.src;
-                    if (!currentSrc.includes('mobile')) {
-                        pdfIframe.src = currentSrc + '&mobile=1&scrollbar=1';
-                    }
+                    // Forcer les paramètres mobiles
+                    const baseSrc = pdfIframe.src.split('#')[0];
+                    pdfIframe.src = baseSrc + '#toolbar=1&navpanes=0&scrollbar=1&view=FitH&zoom=FitH&mobile=1&embed=1';
                     
                     // Améliorer la taille sur mobile
-                    pdfIframe.style.minHeight = '400px';
-                    pdfIframe.style.height = '60vh';
+                    pdfIframe.style.minHeight = '500px';
+                    pdfIframe.style.height = '70vh';
+                    pdfIframe.style.border = '2px solid #e5e7eb';
+                    pdfIframe.style.borderRadius = '8px';
+                    
+                    // Ajouter un indicateur de chargement
+                    const container = pdfIframe.parentElement;
+                    container.style.position = 'relative';
+                    
+                    // Créer un overlay de chargement
+                    const loadingOverlay = document.createElement('div');
+                    loadingOverlay.id = 'pdf-loading';
+                    loadingOverlay.innerHTML = `
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                                    background: rgba(255,255,255,0.9); padding: 20px; border-radius: 8px; 
+                                    text-align: center; z-index: 10;">
+                            <i class="fas fa-spinner fa-spin text-2xl text-afmi-green mb-2"></i>
+                            <p class="text-sm text-gray-600">Chargement du PDF...</p>
+                        </div>
+                    `;
+                    container.appendChild(loadingOverlay);
+                    
+                    // Masquer l'overlay après 3 secondes
+                    setTimeout(() => {
+                        const overlay = document.getElementById('pdf-loading');
+                        if (overlay) overlay.remove();
+                    }, 3000);
                     
                     console.log('📱 PDF optimisé pour mobile');
                 }
@@ -907,8 +934,10 @@
             const successText = document.getElementById('success-text');
             const errorText = document.getElementById('error-text');
             
-            // Configuration de l'API
-            const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://your-api-domain.com';
+            // Configuration de l'API - Même URL que le frontend sur Railway
+            const API_BASE_URL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:3000' 
+                : window.location.origin;
             
             // Fonction pour afficher les messages de statut
             function showMessage(type, message) {
@@ -924,8 +953,18 @@
                     errorMessage.classList.remove('hidden');
                 }
                 
-                // Scroll vers le message
-                messageStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Sur mobile, le message est en position fixe, pas besoin de scroll
+                const isMobile = window.innerWidth < 768;
+                if (!isMobile) {
+                    messageStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // Auto-masquer après 5 secondes sur mobile
+                if (isMobile) {
+                    setTimeout(() => {
+                        hideMessage();
+                    }, 5000);
+                }
             }
             
             // Fonction pour masquer les messages de statut
