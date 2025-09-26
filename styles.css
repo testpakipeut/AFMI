@@ -445,6 +445,31 @@ body {
     .card-hover {
         margin-bottom: 1rem;
     }
+    
+    /* Amélioration du menu mobile */
+    #mobile-menu-btn {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    #mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    /* Assurer que le menu hamburger est toujours visible sur mobile */
+    .md\\:hidden {
+        display: block !important;
+    }
+    
+    /* Cacher le menu desktop sur mobile */
+    .hidden.md\\:flex {
+        display: none !important;
+    }
 }
 
 /* Animation de défilement fluide */

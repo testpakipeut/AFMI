@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mobile Menu - AFMI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Test styles pour vérifier la visibilité du menu mobile */
+        @media (max-width: 768px) {
+            .mobile-menu-test {
+                background-color: #f0f0f0;
+                padding: 10px;
+                margin: 10px 0;
+                border: 2px solid #059669;
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">Test du Menu Mobile AFMI</h1>
+        
+        <!-- Test de visibilité du bouton hamburger -->
+        <div class="mobile-menu-test">
+            <h2 class="text-lg font-semibold mb-2">Test du bouton hamburger :</h2>
+            <div class="md:hidden">
+                <button id="test-mobile-btn" class="text-gray-700 hover:text-green-600 p-2 border border-gray-300 rounded">
+                    <i class="fas fa-bars text-xl"></i> Menu Mobile
+                </button>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">
+                Ce bouton devrait être visible uniquement sur mobile (écrans < 768px)
+            </p>
+        </div>
+        
+        <!-- Test du menu déroulant -->
+        <div class="mobile-menu-test">
+            <h2 class="text-lg font-semibold mb-2">Test du menu déroulant :</h2>
+            <div class="md:hidden">
+                <button id="test-menu-toggle" class="bg-green-600 text-white px-4 py-2 rounded mb-2">
+                    Toggle Menu
+                </button>
+                <div id="test-menu" class="hidden bg-white border border-gray-300 rounded p-4">
+                    <a href="#" class="block py-2 text-gray-700 hover:text-green-600">Accueil</a>
+                    <a href="#" class="block py-2 text-gray-700 hover:text-green-600">Actions</a>
+                    <a href="#" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="bg-blue-50 border border-blue-200 rounded p-4 mt-4">
+            <h3 class="font-semibold text-blue-800 mb-2">Instructions de test :</h3>
+            <ol class="list-decimal list-inside text-blue-700 space-y-1">
+                <li>Ouvrez les outils de développement (F12)</li>
+                <li>Activez le mode responsive/mobile</li>
+                <li>Réduisez la largeur à moins de 768px</li>
+                <li>Vérifiez que les boutons sont visibles</li>
+                <li>Testez le clic sur le bouton "Toggle Menu"</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Test du menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('test-menu-toggle');
+            const testMenu = document.getElementById('test-menu');
+            
+            if (toggleBtn && testMenu) {
+                toggleBtn.addEventListener('click', function() {
+                    testMenu.classList.toggle('hidden');
+                    console.log('Menu toggled:', testMenu.classList.contains('hidden') ? 'hidden' : 'visible');
+                });
+            }
+            
+            // Log pour debug
+            console.log('Test mobile menu loaded');
+            console.log('Screen width:', window.innerWidth);
+            console.log('Is mobile:', window.innerWidth < 768);
+        });
+    </script>
+</body>
+</html>
