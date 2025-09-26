@@ -5,6 +5,7 @@ README.md
 INTEGRATION.md
 EXEMPLES.md
 test.html
+package.json
 *.log
 .DS_Store
 Thumbs.db

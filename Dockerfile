@@ -10,16 +10,12 @@ RUN apk add --no-cache \
 # Créer le répertoire de travail
 WORKDIR /usr/share/nginx/html
 
-# Copier les fichiers de l'application AFMI
+# Copier seulement les fichiers essentiels de l'application AFMI
 COPY index.html .
 COPY script.js .
 COPY config.js .
 COPY utils.js .
 COPY styles.css .
-COPY test.html .
-COPY README.md .
-COPY INTEGRATION.md .
-COPY EXEMPLES.md .
 
 # Créer la configuration Nginx personnalisée
 RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
