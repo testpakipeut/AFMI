@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des Actualités - AFMI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'afmi-green': '#059669',
+                        'afmi-gold': '#D97706',
+                        'afmi-red': '#DC2626',
+                        'afmi-blue': '#1D4ED8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="h-10 w-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-sm">AFMI</div>
+                    <span class="ml-3 text-xl font-bold text-afmi-green">AFMI</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-home mr-2"></i>Accueil
+                    </a>
+                    <a href="index.html#actions" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-hands-helping mr-2"></i>Nos Actions
+                    </a>
+                    <a href="index.html#temoignages" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-comments mr-2"></i>Témoignages
+                    </a>
+                    <a href="index.html#don" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-heart mr-2"></i>Faire un Don
+                    </a>
+                    <a href="index.html#galerie" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-images mr-2"></i>Galerie
+                    </a>
+                    <a href="index.html#actualites" class="text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>Actualités
+                    </a>
+                    <a href="index.html#contact" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-phone mr-2"></i>Contact
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-gray-700 hover:text-afmi-green focus:outline-none focus:ring-2 focus:ring-afmi-green focus:ring-opacity-50 p-2 rounded-md">
+                        <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-home mr-2"></i>Accueil
+                </a>
+                <a href="index.html#actions" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-hands-helping mr-2"></i>Nos Actions
+                </a>
+                <a href="index.html#temoignages" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-comments mr-2"></i>Témoignages
+                </a>
+                <a href="index.html#don" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-heart mr-2"></i>Faire un Don
+                </a>
+                <a href="index.html#galerie" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-images mr-2"></i>Galerie
+                </a>
+                <a href="index.html#actualites" class="block px-3 py-2 text-afmi-green font-medium">
+                    <i class="fas fa-newspaper mr-2"></i>Actualités
+                </a>
+                <a href="index.html#contact" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-phone mr-2"></i>Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="hero-gradient text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                📰 Historique des Actualités AFMI
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                Découvrez toutes nos actions et actualités passées
+            </p>
+            <a href="index.html" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i>Retour à l'accueil
+            </a>
+        </div>
+    </section>
+
+    <!-- Actualités -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-12">
+                
+                <!-- Actualité 1 : Distribution Fournitures Scolaires -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">📚 Distribution de Fournitures Scolaires</h3>
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2 text-afmi-green"></i>
+                                    25 septembre 2025 - École Carrefour Léon Mba
+                                </p>
+                                <p class="text-gray-600 flex items-center mt-1">
+                                    <i class="fas fa-map-marker-alt mr-2 text-afmi-red"></i>
+                                    Libreville, Gabon
+                                </p>
+                            </div>
+                            <div class="text-right">
+                                <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-2">
+                                    <i class="fas fa-graduation-cap mr-1"></i>Éducation
+                                </span>
+                                <div class="text-sm text-gray-500">15 enfants aidés</div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-6 text-lg leading-relaxed">
+                            Une belle journée de solidarité à l'école Carrefour Léon Mba ! Grâce à vos dons généreux, 
+                            nous avons pu distribuer des fournitures scolaires complètes à 15 enfants. Chaque enfant a reçu 
+                            un sac à dos, des cahiers, des stylos, des crayons de couleur, une trousse et tous les manuels 
+                            nécessaires pour bien commencer l'année scolaire.
+                        </p>
+                        
+                        <!-- Galerie d'images -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-images mr-2 text-afmi-blue"></i>
+                                Photos de la distribution
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="relative group">
+                                    <img src="scolaires/im01.jpg" alt="Distribution fournitures scolaires - Vue générale" class="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="relative group">
+                                    <img src="scolaires/im03.jpg" alt="Cahiers et matériel scolaire" class="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="relative group">
+                                    <img src="scolaires/im04.jpg" alt="Sacs à dos et trousses" class="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="relative group">
+                                    <img src="scolaires/im05.jpg" alt="Livres et manuels scolaires" class="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="relative group">
+                                    <img src="scolaires/im06.jpg" alt="Matériel artistique" class="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-shadow">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 transition-opacity text-2xl"></i>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-br from-blue-100 to-green-100 rounded-lg p-4 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <i class="fas fa-video text-3xl text-afmi-blue mb-2"></i>
+                                        <p class="text-sm font-medium text-gray-700">Vidéo disponible</p>
+                                        <video controls class="w-full mt-2 rounded">
+                                            <source src="scolaires/IM02.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Impact et résultats -->
+                        <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-chart-bar mr-2 text-afmi-green"></i>
+                                Impact de cette action
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-afmi-blue mb-1">15</div>
+                                    <div class="text-sm text-gray-600">Enfants équipés</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-afmi-green mb-1">100%</div>
+                                    <div class="text-sm text-gray-600">Fournitures complètes</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-afmi-gold mb-1">1</div>
+                                    <div class="text-sm text-gray-600">École partenaire</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Actualité 2 : Hajj 2026 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">🕋 Hajj 2026</h3>
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2 text-afmi-green"></i>
+                                    Publié le 26 septembre 2024
+                                </p>
+                            </div>
+                            <div>
+                                <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                                    <i class="fas fa-kaaba mr-1"></i>Pèlerinage
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-6">
+                            Découvrez notre document Hajj 2026 avec toutes les informations sur le pèlerinage, 
+                            nos projets en cours et comment nous aider à faire la différence dans la vie des femmes maliennes.
+                        </p>
+                        
+                        <div class="bg-gray-200 rounded-lg overflow-hidden mb-4">
+                            <img src="hajj-2026.jpg" alt="Hajj 2026" class="w-full h-64 object-cover">
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <a href="hajj-2026.jpg" target="_blank" class="bg-afmi-green hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Voir l'image
+                            </a>
+                            <button onclick="downloadImage()" class="bg-afmi-gold hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center">
+                                <i class="fas fa-download mr-2"></i>
+                                Télécharger
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actualité 3 : Pèlerinage 2024 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2">🕋 Pèlerinage Réalisé - 2 femmes à la Mecque</h3>
+                                <p class="text-gray-600 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2 text-afmi-green"></i>
+                                    Juin 2024
+                                </p>
+                            </div>
+                            <div>
+                                <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                                    <i class="fas fa-kaaba mr-1"></i>Accompli
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-6">
+                            Grâce à vos dons, nous avons pu accompagner 2 femmes maliennes dans leur pèlerinage à la Mecque. 
+                            Une expérience spirituelle inoubliable qui a transformé leur vie.
+                        </p>
+                        
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-heart mr-2 text-afmi-green"></i>
+                                Témoignages des pèlerines
+                            </h4>
+                            <blockquote class="text-gray-700 italic">
+                                "Grâce à l'AFMI, j'ai pu réaliser mon rêve d'aller à la Mecque. Cette expérience a transformé ma vie spirituelle. Merci infiniment à toute l'équipe."
+                            </blockquote>
+                            <cite class="text-sm text-gray-600 mt-2 block">- Aminata D., Pèlerine 2024</cite>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Pagination ou Retour -->
+            <div class="text-center mt-12">
+                <a href="index.html#actualites" class="bg-afmi-green hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Retour aux actualités
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-xs mr-3">AFMI</div>
+                        <span class="text-xl font-bold">AFMI</span>
+                    </div>
+                    <p class="text-gray-400">Association des Femmes Maliennes pour l'Initiative — entraide, solidarité, foi.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Nos Actions</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html#actions" class="hover:text-white">Colis alimentaires</a></li>
+                        <li><a href="index.html#actions" class="hover:text-white">Bourses d'étude</a></li>
+                        <li><a href="index.html#actions" class="hover:text-white">Aide au pèlerinage</a></li>
+                        <li><a href="index.html#actions" class="hover:text-white">Consultations médicales</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Liens utiles</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white">Accueil</a></li>
+                        <li><a href="index.html#actions" class="hover:text-white">Nos Actions</a></li>
+                        <li><a href="index.html#don" class="hover:text-white">Faire un don</a></li>
+                        <li><a href="index.html#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📞 +241 XX XX XX XX</li>
+                        <li>✉️ contact@afmi-gabon.org</li>
+                        <li>📍 Libreville, Gabon</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 AFMI - Association des Femmes Maliennes pour l'Initiative. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Fonction simple pour le menu hamburger
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        
+        // Fermer le menu mobile quand on clique sur un lien
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const menu = document.getElementById('mobile-menu');
+                    const icon = document.getElementById('hamburger-icon');
+                    menu.classList.add('hidden');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        });
+        
+        // Fonction pour télécharger l'image
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.href = 'hajj-2026.jpg';
+            link.download = 'hajj-2026.jpg';
+            link.click();
+        }
+    </script>
+</body>
+</html>
