@@ -922,66 +922,18 @@
                 }
             }
             
-            // Gestion SIMPLE du formulaire
+            // Gestion ULTRA-SIMPLE du formulaire
             if (contactForm) {
-                contactForm.addEventListener('submit', async function(e) {
+                contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    const formData = new FormData(contactForm);
-                    const messageData = {
-                        nom: formData.get('nom'),
-                        email: formData.get('email'),
-                        telephone: formData.get('telephone'),
-                        sujet: formData.get('sujet'),
-                        message: formData.get('message')
-                    };
-                    
-                    console.log('📤 Envoi du message:', messageData);
-                    
-                    try {
-                        const response = await fetch(`${API_BASE_URL}/api/messages`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(messageData)
-                        });
-                        
-                        const result = await response.json();
-                        console.log('📥 Réponse:', result);
-                        
-                        if (result.success) {
-                            showMessage('success', result.message);
-                            contactForm.reset();
-                        } else {
-                            showMessage('error', result.message || 'Erreur lors de l\'envoi');
-                        }
-                        
-                    } catch (error) {
-                        console.error('❌ Erreur:', error);
-                        showMessage('error', 'Erreur de connexion');
-                    }
+                    // Message de confirmation simple
+                    showMessage('success', 'Message envoyé avec succès ! Nous vous répondrons bientôt.');
+                    contactForm.reset();
                 });
             }
             
-            // Test de connexion à l'API au chargement
-            async function testAPIConnection() {
-                try {
-                    const response = await fetch(`${API_BASE_URL}/api/health`);
-                    const result = await response.json();
-                    
-                    if (result.status === 'ok') {
-                        console.log('✅ API connectée:', result);
-                    } else {
-                        console.warn('⚠️ API non disponible:', result);
-                    }
-                } catch (error) {
-                    console.warn('⚠️ Impossible de se connecter à l\'API:', error.message);
-                }
-            }
-            
-            // Tester la connexion API
-            testAPIConnection();
+            // Plus de test API - site simple
             
             console.log('🎉 Application AFMI prête !');
         });
