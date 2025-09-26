@@ -59,8 +59,8 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-afmi-green focus:outline-none focus:ring-2 focus:ring-afmi-green focus:ring-opacity-50 p-2 rounded-md">
-                        <i class="fas fa-bars text-xl"></i>
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-gray-700 hover:text-afmi-green focus:outline-none focus:ring-2 focus:ring-afmi-green focus:ring-opacity-50 p-2 rounded-md">
+                        <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
@@ -493,17 +493,14 @@
                                 </div>
                             </div>
                             
-                            <!-- PDF Viewer - Version optimisée pour mobile -->
+                            <!-- PDF Viewer - Version simplifiée -->
                             <div class="aspect-[4/3] md:aspect-[4/3] aspect-[3/4] bg-gray-200 rounded-lg overflow-hidden">
                                 <iframe 
-                                    src="hajj-2026.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH&zoom=FitH&mobile=1&embed=1" 
+                                    src="hajj-2026.pdf" 
                                     width="100%" 
                                     height="100%" 
                                     class="border-0"
-                                    title="Hajj 2026"
-                                    loading="lazy"
-                                    allowfullscreen
-                                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+                                    title="Hajj 2026">
                                     <div class="text-center text-gray-600 p-8">
                                         <i class="fas fa-file-pdf text-4xl mb-4 text-red-500"></i><br>
                                         <p class="mb-4">Votre navigateur ne supporte pas l'affichage des PDF.</p>
@@ -771,51 +768,37 @@
 
     <!-- JavaScript -->
     <script>
+        // Fonction simple pour le menu hamburger
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        
         // Configuration simple pour éviter les erreurs
         console.log('🌟 AFMI - Démarrage de l\'application');
         
-        // Navigation mobile simple
+        // Fermer le menu mobile quand on clique sur un lien
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('✅ DOM chargé');
-            
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            console.log('🔍 Éléments menu:', { mobileMenuBtn, mobileMenu });
-            
-            if (mobileMenuBtn && mobileMenu) {
-                console.log('✅ Éléments menu trouvés, ajout des événements');
-                mobileMenuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                    console.log('📱 Menu mobile togglé');
-                    
-                    // Animation de l'icône hamburger
-                    const icon = mobileMenuBtn.querySelector('i');
-                    if (mobileMenu.classList.contains('hidden')) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    } else {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    }
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const menu = document.getElementById('mobile-menu');
+                    const icon = document.getElementById('hamburger-icon');
+                    menu.classList.add('hidden');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 });
-                
-                // Fermer le menu mobile quand on clique sur un lien
-                const mobileLinks = mobileMenu.querySelectorAll('a');
-                mobileLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        mobileMenu.classList.add('hidden');
-                        const icon = mobileMenuBtn.querySelector('i');
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    });
-                });
-            } else {
-                console.error('❌ Éléments menu non trouvés:', {
-                    mobileMenuBtn: !!mobileMenuBtn,
-                    mobileMenu: !!mobileMenu
-                });
-            }
+            });
             
             // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -889,52 +872,21 @@
                 console.log('📊 PDF téléchargé: hajj-2026.pdf');
             };
             
-            // Amélioration de l'affichage PDF sur mobile
-            function optimizePDFForMobile() {
-                const isMobile = window.innerWidth < 768;
-                const pdfIframe = document.querySelector('iframe[src*=".pdf"]');
-                
-                if (isMobile && pdfIframe) {
-                    // Forcer les paramètres mobiles
-                    const baseSrc = pdfIframe.src.split('#')[0];
-                    pdfIframe.src = baseSrc + '#toolbar=1&navpanes=0&scrollbar=1&view=FitH&zoom=FitH&mobile=1&embed=1';
+            // Test de connexion à l'API au chargement
+            async function testAPIConnection() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/health`);
+                    const result = await response.json();
                     
-                    // Améliorer la taille sur mobile
-                    pdfIframe.style.minHeight = '500px';
-                    pdfIframe.style.height = '70vh';
-                    pdfIframe.style.border = '2px solid #e5e7eb';
-                    pdfIframe.style.borderRadius = '8px';
-                    
-                    // Ajouter un indicateur de chargement
-                    const container = pdfIframe.parentElement;
-                    container.style.position = 'relative';
-                    
-                    // Créer un overlay de chargement
-                    const loadingOverlay = document.createElement('div');
-                    loadingOverlay.id = 'pdf-loading';
-                    loadingOverlay.innerHTML = `
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-                                    background: rgba(255,255,255,0.9); padding: 20px; border-radius: 8px; 
-                                    text-align: center; z-index: 10;">
-                            <i class="fas fa-spinner fa-spin text-2xl text-afmi-green mb-2"></i>
-                            <p class="text-sm text-gray-600">Chargement du PDF...</p>
-                        </div>
-                    `;
-                    container.appendChild(loadingOverlay);
-                    
-                    // Masquer l'overlay après 3 secondes
-                    setTimeout(() => {
-                        const overlay = document.getElementById('pdf-loading');
-                        if (overlay) overlay.remove();
-                    }, 3000);
-                    
-                    console.log('📱 PDF optimisé pour mobile');
+                    if (result.status === 'ok') {
+                        console.log('✅ API connectée:', result);
+                    } else {
+                        console.warn('⚠️ API non disponible:', result);
+                    }
+                } catch (error) {
+                    console.warn('⚠️ Impossible de se connecter à l\'API:', error.message);
                 }
             }
-            
-            // Optimiser au chargement et au redimensionnement
-            optimizePDFForMobile();
-            window.addEventListener('resize', optimizePDFForMobile);
             
             // Gestion du formulaire de contact
             const contactForm = document.getElementById('contact-form');
@@ -948,9 +900,7 @@
             const errorText = document.getElementById('error-text');
             
             // Configuration de l'API - Même URL que le frontend sur Railway
-            const API_BASE_URL = window.location.hostname === 'localhost' 
-                ? 'http://localhost:3000' 
-                : window.location.origin;
+            const API_BASE_URL = window.location.origin;
             
             // Fonction pour afficher les messages de statut
             function showMessage(type, message) {
