@@ -493,14 +493,16 @@
                                 </div>
                             </div>
                             
-                            <div class="aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden">
+                            <!-- PDF Viewer - Version améliorée pour mobile -->
+                            <div class="aspect-[4/3] md:aspect-[4/3] aspect-[3/4] bg-gray-200 rounded-lg overflow-hidden">
                                 <iframe 
-                                    src="hajj-2026.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" 
+                                    src="hajj-2026.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH&zoom=FitH" 
                                     width="100%" 
                                     height="100%" 
                                     class="border-0"
                                     title="Hajj 2026"
-                                    loading="lazy">
+                                    loading="lazy"
+                                    allowfullscreen>
                                     <div class="text-center text-gray-600 p-8">
                                         <i class="fas fa-file-pdf text-4xl mb-4 text-red-500"></i><br>
                                         <p class="mb-4">Votre navigateur ne supporte pas l'affichage des PDF.</p>
@@ -512,20 +514,26 @@
                                 </iframe>
                             </div>
                             
-                            <!-- Version mobile du PDF -->
+                            <!-- Options mobiles améliorées -->
                             <div class="md:hidden mt-4">
                                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                                     <h5 class="font-semibold text-blue-800 mb-2 flex items-center">
                                         <i class="fas fa-mobile-alt mr-2"></i>
-                                        Version mobile
+                                        Options mobiles
                                     </h5>
                                     <p class="text-blue-700 text-sm mb-3">
-                                        Pour une meilleure expérience sur mobile, ouvrez le PDF dans un nouvel onglet :
+                                        Si le PDF ne s'affiche pas correctement ci-dessus, utilisez ces options :
                                     </p>
-                                    <a href="hajj-2026.pdf" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors inline-flex items-center">
-                                        <i class="fas fa-external-link-alt mr-2"></i>
-                                        Ouvrir le PDF
-                                    </a>
+                                    <div class="space-y-2">
+                                        <a href="hajj-2026.pdf" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors inline-flex items-center w-full justify-center">
+                                            <i class="fas fa-external-link-alt mr-2"></i>
+                                            Ouvrir dans un nouvel onglet
+                                        </a>
+                                        <button onclick="downloadPDF()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors inline-flex items-center w-full justify-center">
+                                            <i class="fas fa-download mr-2"></i>
+                                            Télécharger le PDF
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -651,29 +659,57 @@
                 <!-- Formulaire de contact -->
                 <div class="bg-gray-50 rounded-lg p-8">
                     <h3 class="text-2xl font-bold mb-6">Envoyez-nous un message</h3>
-                    <form class="space-y-6">
+                    
+                    <!-- Messages de statut -->
+                    <div id="message-status" class="hidden mb-4 p-4 rounded-lg">
+                        <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span id="success-text">Message envoyé avec succès !</span>
+                        </div>
+                        <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            <span id="error-text">Erreur lors de l'envoi du message.</span>
+                        </div>
+                    </div>
+                    
+                    <form id="contact-form" class="space-y-6">
                         <div>
-                            <label for="nom" class="block text-sm font-medium text-gray-700 mb-2">Nom complet</label>
+                            <label for="nom" class="block text-sm font-medium text-gray-700 mb-2">Nom complet *</label>
                             <input type="text" id="nom" name="nom" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
                         </div>
                         
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                             <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
                         </div>
                         
                         <div>
                             <label for="telephone" class="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
-                            <input type="tel" id="telephone" name="telephone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent">
+                            <input type="tel" id="telephone" name="telephone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" placeholder="+241 XX XX XX XX">
                         </div>
                         
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required></textarea>
+                            <label for="sujet" class="block text-sm font-medium text-gray-700 mb-2">Sujet *</label>
+                            <select id="sujet" name="sujet" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="Information générale">Information générale</option>
+                                <option value="Demande de renseignements">Demande de renseignements</option>
+                                <option value="Partenariat">Partenariat</option>
+                                <option value="Don/Contribution">Don/Contribution</option>
+                                <option value="Pèlerinage Hajj 2026">Pèlerinage Hajj 2026</option>
+                                <option value="Autre">Autre</option>
+                            </select>
                         </div>
                         
-                        <button type="submit" class="w-full bg-afmi-green hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
-                            Envoyer le message
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" placeholder="Décrivez votre demande ou votre message..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" id="submit-btn" class="w-full bg-afmi-green hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            <span id="submit-text">Envoyer le message</span>
+                            <i id="loading-spinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
                         </button>
                     </form>
                 </div>
@@ -835,6 +871,176 @@
                 // Analytics (optionnel)
                 console.log('📊 PDF téléchargé: hajj-2026.pdf');
             };
+            
+            // Amélioration de l'affichage PDF sur mobile
+            function optimizePDFForMobile() {
+                const isMobile = window.innerWidth < 768;
+                const pdfIframe = document.querySelector('iframe[src*=".pdf"]');
+                
+                if (isMobile && pdfIframe) {
+                    // Ajouter des paramètres spécifiques pour mobile
+                    const currentSrc = pdfIframe.src;
+                    if (!currentSrc.includes('mobile')) {
+                        pdfIframe.src = currentSrc + '&mobile=1&scrollbar=1';
+                    }
+                    
+                    // Améliorer la taille sur mobile
+                    pdfIframe.style.minHeight = '400px';
+                    pdfIframe.style.height = '60vh';
+                    
+                    console.log('📱 PDF optimisé pour mobile');
+                }
+            }
+            
+            // Optimiser au chargement et au redimensionnement
+            optimizePDFForMobile();
+            window.addEventListener('resize', optimizePDFForMobile);
+            
+            // Gestion du formulaire de contact
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const messageStatus = document.getElementById('message-status');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const successText = document.getElementById('success-text');
+            const errorText = document.getElementById('error-text');
+            
+            // Configuration de l'API
+            const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://your-api-domain.com';
+            
+            // Fonction pour afficher les messages de statut
+            function showMessage(type, message) {
+                messageStatus.classList.remove('hidden');
+                successMessage.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+                
+                if (type === 'success') {
+                    successText.textContent = message;
+                    successMessage.classList.remove('hidden');
+                } else {
+                    errorText.textContent = message;
+                    errorMessage.classList.remove('hidden');
+                }
+                
+                // Scroll vers le message
+                messageStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Fonction pour masquer les messages de statut
+            function hideMessage() {
+                messageStatus.classList.add('hidden');
+            }
+            
+            // Fonction pour activer/désactiver le bouton d'envoi
+            function setSubmitButtonState(loading) {
+                if (loading) {
+                    submitBtn.disabled = true;
+                    submitText.textContent = 'Envoi en cours...';
+                    loadingSpinner.classList.remove('hidden');
+                    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+                } else {
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Envoyer le message';
+                    loadingSpinner.classList.add('hidden');
+                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                }
+            }
+            
+            // Gestion de la soumission du formulaire
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Masquer les messages précédents
+                    hideMessage();
+                    
+                    // Récupérer les données du formulaire
+                    const formData = new FormData(contactForm);
+                    const messageData = {
+                        nom: formData.get('nom').trim(),
+                        email: formData.get('email').trim(),
+                        telephone: formData.get('telephone').trim(),
+                        sujet: formData.get('sujet'),
+                        message: formData.get('message').trim()
+                    };
+                    
+                    // Validation côté client
+                    if (!messageData.nom || !messageData.email || !messageData.sujet || !messageData.message) {
+                        showMessage('error', 'Veuillez remplir tous les champs obligatoires.');
+                        return;
+                    }
+                    
+                    // Validation de l'email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(messageData.email)) {
+                        showMessage('error', 'Veuillez saisir une adresse email valide.');
+                        return;
+                    }
+                    
+                    // Activer l'état de chargement
+                    setSubmitButtonState(true);
+                    
+                    try {
+                        // Envoi vers l'API
+                        const response = await fetch(`${API_BASE_URL}/api/messages`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(messageData)
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok && result.success) {
+                            // Succès
+                            showMessage('success', `Message envoyé avec succès ! Nous vous répondrons bientôt. (ID: ${result.messageId})`);
+                            contactForm.reset();
+                            
+                            // Analytics (optionnel)
+                            console.log('📧 Message envoyé:', {
+                                id: result.messageId,
+                                email: messageData.email,
+                                sujet: messageData.sujet,
+                                timestamp: result.timestamp
+                            });
+                            
+                        } else {
+                            // Erreur de l'API
+                            showMessage('error', result.message || 'Erreur lors de l\'envoi du message.');
+                        }
+                        
+                    } catch (error) {
+                        // Erreur réseau ou autre
+                        console.error('❌ Erreur lors de l\'envoi:', error);
+                        showMessage('error', 'Erreur de connexion. Veuillez vérifier votre connexion internet et réessayer.');
+                    } finally {
+                        // Désactiver l'état de chargement
+                        setSubmitButtonState(false);
+                    }
+                });
+            }
+            
+            // Test de connexion à l'API au chargement
+            async function testAPIConnection() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/health`);
+                    const result = await response.json();
+                    
+                    if (result.status === 'ok') {
+                        console.log('✅ API connectée:', result);
+                    } else {
+                        console.warn('⚠️ API non disponible:', result);
+                    }
+                } catch (error) {
+                    console.warn('⚠️ Impossible de se connecter à l\'API:', error.message);
+                }
+            }
+            
+            // Tester la connexion API
+            testAPIConnection();
             
             console.log('🎉 Application AFMI prête !');
         });

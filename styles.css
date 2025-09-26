@@ -470,6 +470,23 @@ body {
     .hidden.md\\:flex {
         display: none !important;
     }
+    
+    /* Amélioration de l'affichage PDF sur mobile */
+    iframe[src*=".pdf"] {
+        min-height: 400px;
+        height: 60vh;
+        max-height: 600px;
+    }
+    
+    /* Conteneur PDF responsive */
+    .aspect-\\[3\\/4\\] {
+        aspect-ratio: 3/4;
+    }
+    
+    /* Amélioration des boutons mobiles */
+    .space-y-2 > * + * {
+        margin-top: 0.5rem;
+    }
 }
 
 /* Animation de défilement fluide */
