@@ -673,7 +673,7 @@
                         </div>
                     </div>
                     
-                    <form id="contact-form" class="space-y-6">
+                    <form id="contact-form" method="POST" class="space-y-6">
                         <div>
                             <label for="nom" class="block text-sm font-medium text-gray-700 mb-2">Nom complet *</label>
                             <input type="text" id="nom" name="nom" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
@@ -812,11 +812,6 @@
                             behavior: 'smooth',
                             block: 'start'
                         });
-            } else {
-                console.error('❌ Éléments menu non trouvés:', {
-                    mobileMenuBtn: !!mobileMenuBtn,
-                    mobileMenu: !!mobileMenu
-                });
                     }
                 });
             });
@@ -850,16 +845,7 @@
                 });
             });
             
-            // Test formulaire de contact
-            const contactForm = document.querySelector('#contact form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    console.log('📧 Formulaire soumis');
-                    alert('✅ Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
-                    this.reset();
-                });
-            }
+            // Test formulaire de contact (ancien code supprimé)
             
             // Fonctions pour la section Actualités
             window.downloadPDF = function() {
@@ -888,45 +874,31 @@
                 }
             }
             
-            // Gestion du formulaire de contact
+            // Gestion SIMPLE du formulaire
             const contactForm = document.getElementById('contact-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const submitText = document.getElementById('submit-text');
-            const loadingSpinner = document.getElementById('loading-spinner');
-            const messageStatus = document.getElementById('message-status');
-            const successMessage = document.getElementById('success-message');
-            const errorMessage = document.getElementById('error-message');
-            const successText = document.getElementById('success-text');
-            const errorText = document.getElementById('error-text');
-            
-            // Configuration de l'API - Même URL que le frontend sur Railway
             const API_BASE_URL = window.location.origin;
             
-            // Fonction pour afficher les messages de statut
-            function showMessage(type, message) {
+            console.log('🔗 API URL:', API_BASE_URL);
+            console.log('📝 Formulaire trouvé:', !!contactForm);
+            
+            // Fonction SIMPLE pour afficher les messages
+            function showMessage(type, text) {
+                const messageStatus = document.getElementById('message-status');
+                const successMessage = document.getElementById('success-message');
+                const errorMessage = document.getElementById('error-message');
+                const successText = document.getElementById('success-text');
+                const errorText = document.getElementById('error-text');
+                
                 messageStatus.classList.remove('hidden');
-                successMessage.classList.add('hidden');
-                errorMessage.classList.add('hidden');
                 
                 if (type === 'success') {
-                    successText.textContent = message;
+                    successText.textContent = text;
                     successMessage.classList.remove('hidden');
+                    errorMessage.classList.add('hidden');
                 } else {
-                    errorText.textContent = message;
+                    errorText.textContent = text;
                     errorMessage.classList.remove('hidden');
-                }
-                
-                // Sur mobile, le message est en position fixe, pas besoin de scroll
-                const isMobile = window.innerWidth < 768;
-                if (!isMobile) {
-                    messageStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                
-                // Auto-masquer après 5 secondes sur mobile
-                if (isMobile) {
-                    setTimeout(() => {
-                        hideMessage();
-                    }, 5000);
+                    successMessage.classList.add('hidden');
                 }
             }
             
@@ -950,42 +922,23 @@
                 }
             }
             
-            // Gestion de la soumission du formulaire
+            // Gestion SIMPLE du formulaire
             if (contactForm) {
                 contactForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    // Masquer les messages précédents
-                    hideMessage();
-                    
-                    // Récupérer les données du formulaire
                     const formData = new FormData(contactForm);
                     const messageData = {
-                        nom: formData.get('nom').trim(),
-                        email: formData.get('email').trim(),
-                        telephone: formData.get('telephone').trim(),
+                        nom: formData.get('nom'),
+                        email: formData.get('email'),
+                        telephone: formData.get('telephone'),
                         sujet: formData.get('sujet'),
-                        message: formData.get('message').trim()
+                        message: formData.get('message')
                     };
                     
-                    // Validation côté client
-                    if (!messageData.nom || !messageData.email || !messageData.sujet || !messageData.message) {
-                        showMessage('error', 'Veuillez remplir tous les champs obligatoires.');
-                        return;
-                    }
-                    
-                    // Validation de l'email
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(messageData.email)) {
-                        showMessage('error', 'Veuillez saisir une adresse email valide.');
-                        return;
-                    }
-                    
-                    // Activer l'état de chargement
-                    setSubmitButtonState(true);
+                    console.log('📤 Envoi du message:', messageData);
                     
                     try {
-                        // Envoi vers l'API
                         const response = await fetch(`${API_BASE_URL}/api/messages`, {
                             method: 'POST',
                             headers: {
@@ -995,32 +948,18 @@
                         });
                         
                         const result = await response.json();
+                        console.log('📥 Réponse:', result);
                         
-                        if (response.ok && result.success) {
-                            // Succès
-                            showMessage('success', `Message envoyé avec succès ! Nous vous répondrons bientôt. (ID: ${result.messageId})`);
+                        if (result.success) {
+                            showMessage('success', result.message);
                             contactForm.reset();
-                            
-                            // Analytics (optionnel)
-                            console.log('📧 Message envoyé:', {
-                                id: result.messageId,
-                                email: messageData.email,
-                                sujet: messageData.sujet,
-                                timestamp: result.timestamp
-                            });
-                            
                         } else {
-                            // Erreur de l'API
-                            showMessage('error', result.message || 'Erreur lors de l\'envoi du message.');
+                            showMessage('error', result.message || 'Erreur lors de l\'envoi');
                         }
                         
                     } catch (error) {
-                        // Erreur réseau ou autre
-                        console.error('❌ Erreur lors de l\'envoi:', error);
-                        showMessage('error', 'Erreur de connexion. Veuillez vérifier votre connexion internet et réessayer.');
-                    } finally {
-                        // Désactiver l'état de chargement
-                        setSubmitButtonState(false);
+                        console.error('❌ Erreur:', error);
+                        showMessage('error', 'Erreur de connexion');
                     }
                 });
             }

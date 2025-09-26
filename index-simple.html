@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFMI - Association des Femmes Maliennes pour l'Initiative</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'afmi-green': '#059669',
+                        'afmi-gold': '#D97706',
+                        'afmi-red': '#DC2626',
+                        'afmi-blue': '#1D4ED8'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="h-10 w-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-sm">AFMI</div>
+                    <span class="ml-3 text-xl font-bold text-afmi-green">AFMI</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-home mr-2"></i>Accueil
+                    </a>
+                    <a href="#actions" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-hands-helping mr-2"></i>Nos Actions
+                    </a>
+                    <a href="#contact" class="text-gray-700 hover:text-afmi-green font-medium flex items-center">
+                        <i class="fas fa-phone mr-2"></i>Contact
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-afmi-green p-2">
+                        <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#accueil" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-home mr-2"></i>Accueil
+                </a>
+                <a href="#actions" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-hands-helping mr-2"></i>Nos Actions
+                </a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-afmi-green font-medium">
+                    <i class="fas fa-phone mr-2"></i>Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-gradient text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Bienvenue à l'AFMI
+            </h1>
+            <p class="text-xl md:text-2xl mb-8">
+                Association des Femmes Maliennes pour l'Initiative — entraide, solidarité, foi
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Contactez-nous</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <!-- Messages de statut -->
+                <div id="message-status" class="hidden mb-6 p-4 rounded-lg">
+                    <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span id="success-text">Message envoyé avec succès !</span>
+                    </div>
+                    <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        <span id="error-text">Erreur lors de l'envoi du message.</span>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de contact -->
+                <form id="contact-form" method="POST" class="space-y-6">
+                    <div>
+                        <label for="nom" class="block text-sm font-medium text-gray-700 mb-2">Nom complet *</label>
+                        <input type="text" id="nom" name="nom" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
+                    </div>
+                    
+                    <div>
+                        <label for="telephone" class="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
+                        <input type="tel" id="telephone" name="telephone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label for="sujet" class="block text-sm font-medium text-gray-700 mb-2">Sujet *</label>
+                        <select id="sujet" name="sujet" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required>
+                            <option value="">Sélectionnez un sujet</option>
+                            <option value="Information générale">Information générale</option>
+                            <option value="Demande de renseignements">Demande de renseignements</option>
+                            <option value="Partenariat">Partenariat</option>
+                            <option value="Don/Contribution">Don/Contribution</option>
+                            <option value="Pèlerinage Hajj 2026">Pèlerinage Hajj 2026</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-afmi-green focus:border-transparent" required></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="w-full bg-afmi-green hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
+                        Envoyer le message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2024 AFMI - Association des Femmes Maliennes pour l'Initiative. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Fonction simple pour le menu hamburger
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        
+        // Gestion SIMPLE du formulaire
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            const API_BASE_URL = window.location.origin;
+            
+            console.log('🔗 API URL:', API_BASE_URL);
+            console.log('📝 Formulaire trouvé:', !!contactForm);
+            
+            // Fonction simple pour afficher un message
+            function showMessage(type, text) {
+                const messageStatus = document.getElementById('message-status');
+                const successMessage = document.getElementById('success-message');
+                const errorMessage = document.getElementById('error-message');
+                const successText = document.getElementById('success-text');
+                const errorText = document.getElementById('error-text');
+                
+                messageStatus.classList.remove('hidden');
+                
+                if (type === 'success') {
+                    successText.textContent = text;
+                    successMessage.classList.remove('hidden');
+                    errorMessage.classList.add('hidden');
+                } else {
+                    errorText.textContent = text;
+                    errorMessage.classList.remove('hidden');
+                    successMessage.classList.add('hidden');
+                }
+            }
+            
+            // Gestion de la soumission du formulaire
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(contactForm);
+                    const messageData = {
+                        nom: formData.get('nom'),
+                        email: formData.get('email'),
+                        telephone: formData.get('telephone'),
+                        sujet: formData.get('sujet'),
+                        message: formData.get('message')
+                    };
+                    
+                    console.log('📤 Envoi du message:', messageData);
+                    
+                    try {
+                        const response = await fetch(`${API_BASE_URL}/api/messages`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(messageData)
+                        });
+                        
+                        const result = await response.json();
+                        console.log('📥 Réponse:', result);
+                        
+                        if (result.success) {
+                            showMessage('success', result.message);
+                            contactForm.reset();
+                        } else {
+                            showMessage('error', result.message || 'Erreur lors de l\'envoi');
+                        }
+                        
+                    } catch (error) {
+                        console.error('❌ Erreur:', error);
+                        showMessage('error', 'Erreur de connexion');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
