@@ -21,6 +21,11 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <meta property="og:title" content="AFMI - Association des Femmes Maliennes dans l'Islam">
+    <meta property="og:description" content="Solidarité, éducation, santé et spiritualité pour les femmes maliennes.">
+    <meta property="og:image" content="logo.jpg">
+    <meta property="og:type" content="website">
 </head>
 <body class="font-sans bg-gray-50">
     <!-- Navigation -->
@@ -96,6 +101,7 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero-gradient text-white py-20">
+        <!-- bande tricolore supprimée pour un design plus épuré -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">
                 Bienvenue à l'AFMI
@@ -125,7 +131,7 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#don" class="bg-afmi-gold hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center justify-center">
+                <a href="#don" class="bg-afmi-gold hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center justify-center don-cta">
                     <i class="fas fa-heart mr-2"></i>💳 Faire un don
                 </a>
                 <a href="#contact" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-flex items-center justify-center">
@@ -138,7 +144,7 @@
     <!-- Dernières Actions -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nos dernières actions</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12 section-title">Nos dernières actions<span class="islamic-star">⭐</span></h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="text-center p-6 bg-green-50 rounded-lg">
                     <i class="fas fa-kaaba text-4xl text-afmi-green mb-4"></i>
@@ -162,9 +168,9 @@
     <!-- Nos Actions Détaillées -->
     <section id="actions" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12 section-title">
                 <i class="fas fa-hands-helping mr-3 text-afmi-green"></i>
-                Nos Actions
+                Nos Actions<span class="islamic-star">⭐</span>
             </h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -282,9 +288,9 @@
     <!-- Section Fournitures Scolaires -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12 section-title">
                 <i class="fas fa-graduation-cap mr-3 text-afmi-blue"></i>
-                📚 Distribution de Fournitures Scolaires
+                📚 Distribution de Fournitures Scolaires<span class="islamic-star">⭐</span>
             </h2>
             
             <div class="text-center mb-8">
@@ -489,41 +495,58 @@
     </section>
 
     <!-- Section Don -->
-    <section id="don" class="py-16 bg-gradient-to-br from-afmi-green to-emerald-600 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-8">
-                <i class="fas fa-heart mr-3"></i>
-                💳 Faire un Don
+    <section id="don" class="py-16 bg-gradient-to-br from-afmi-green via-green-600 to-afmi-gold text-white relative overflow-hidden">
+        <!-- Motif islamique discret -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 border-2 border-white rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-24 h-24 border-2 border-white rounded-full"></div>
+            <div class="absolute top-1/2 left-1/4 w-16 h-16 border border-white rounded-full"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl font-bold mb-8 section-title">
+                <i class="fas fa-heart mr-3 text-afmi-gold"></i>
+                💳 Faire un Don<span class="islamic-star">⭐</span>
             </h2>
-            <p class="text-xl mb-12">Votre générosité fait la différence dans la vie des femmes maliennes</p>
+            <p class="text-xl mb-12 text-white/90">Votre générosité fait la différence dans la vie des femmes maliennes</p>
             
             <div class="grid md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
                 <!-- Mobile Money -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 card-hover text-center">
-                    <i class="fas fa-mobile-alt text-5xl mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4">Mobile Money</h3>
-                    <p class="mb-6 text-lg">Orange Money • Moov Money • Airtel Money</p>
-                    <button class="bg-afmi-gold hover:bg-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                <div class="bg-white/15 backdrop-blur-sm rounded-xl p-8 card-hover text-center border border-white/20">
+                    <div class="bg-afmi-gold/20 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-3xl text-afmi-gold"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Mobile Money</h3>
+                    <p class="mb-6 text-lg text-white/80">Orange Money • Moov Money • Airtel Money</p>
+                    <button class="bg-afmi-gold hover:bg-yellow-500 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <i class="fas fa-mobile-alt mr-2"></i>
                         Donner par Mobile Money
                     </button>
                 </div>
 
                 <!-- PayPal -->
-                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 card-hover text-center">
-                    <i class="fab fa-paypal text-5xl mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4">PayPal</h3>
-                    <p class="mb-6 text-lg">Don sécurisé en ligne</p>
-                    <button class="bg-afmi-gold hover:bg-orange-600 px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                <div class="bg-white/15 backdrop-blur-sm rounded-xl p-8 card-hover text-center border border-white/20">
+                    <div class="bg-blue-500/20 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fab fa-paypal text-3xl text-blue-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">PayPal</h3>
+                    <p class="mb-6 text-lg text-white/80">Don sécurisé en ligne</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <i class="fab fa-paypal mr-2"></i>
                         Donner via PayPal
                     </button>
                 </div>
             </div>
 
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 text-center max-w-2xl mx-auto">
-                <p class="text-lg opacity-90">
+            <div class="bg-white/15 backdrop-blur-sm rounded-xl p-8 text-center max-w-2xl mx-auto border border-white/20">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-shield-alt text-2xl text-afmi-gold mr-3"></i>
+                    <h3 class="text-xl font-semibold text-white">Transparence garantie</h3>
+                </div>
+                <p class="text-lg text-white/90 mb-4">
                     💝 Tous les dons sont utilisés directement pour nos actions humanitaires
                 </p>
-                <p class="text-sm opacity-75 mt-2">
+                <p class="text-sm text-white/75">
                     Merci pour votre générosité et votre confiance
                 </p>
             </div>
@@ -586,9 +609,9 @@
     <!-- Actualités -->
     <section id="actualites" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12 section-title">
                 <i class="fas fa-newspaper mr-3 text-afmi-green"></i>
-                📰 Actualités AFMI
+                📰 Actualités AFMI<span class="islamic-star">⭐</span>
             </h2>
             
             <div class="max-w-4xl mx-auto">
@@ -751,9 +774,9 @@
     <!-- Contact -->
     <section id="contact" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12 section-title">
                 <i class="fas fa-phone mr-3 text-afmi-green"></i>
-                📞 Contact
+                📞 Contact<span class="islamic-star">⭐</span>
             </h2>
             
             <div class="grid md:grid-cols-2 gap-12">

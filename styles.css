@@ -2,10 +2,11 @@
 
 /* Variables CSS pour les couleurs AFMI */
 :root {
-    --afmi-green: #059669;
-    --afmi-gold: #D97706;
-    --afmi-red: #DC2626;
-    --afmi-blue: #1D4ED8;
+    /* Palette Mali + Islam */
+    --afmi-green: #14B53A; /* Vert Mali */
+    --afmi-gold: #FCD116;  /* Or Mali */
+    --afmi-red: #CE1126;   /* Rouge Mali (accents) */
+    --afmi-blue: #1D4ED8;  /* Bleu conservé pour éducation */
     --afmi-light-green: #ECFDF5;
     --afmi-light-gold: #FEF3C7;
     
@@ -87,7 +88,7 @@ body {
 
 /* Gradient personnalisé pour le hero */
 .hero-gradient {
-    background: linear-gradient(135deg, var(--afmi-green) 0%, #10B981 50%, var(--afmi-gold) 100%);
+    background: linear-gradient(135deg, var(--afmi-green) 0%, #2dd16b 50%, var(--afmi-gold) 100%);
     position: relative;
 }
 
@@ -98,7 +99,10 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.1);
+    /* Motif géométrique islamique discret */
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+    background-size: 24px 24px;
+    background-color: rgba(0, 0, 0, 0.08);
     z-index: 1;
 }
 
@@ -107,10 +111,46 @@ body {
     z-index: 2;
 }
 
+/* Bande drapeau Mali */
+/* .mali-band retirée (désactivée) */
+.mali-band { display: none; }
+
 /* Effets de survol pour les cartes */
 .card-hover {
     transition: all var(--transition-normal);
     cursor: pointer;
+}
+
+/* Titres de section décorés - Hommage Mali + Islam */
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding: 0 50px; /* Espace pour les icônes */
+}
+
+/* Croissant de lune islamique à gauche */
+.section-title::before {
+    content: '🌙';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 4px rgba(252, 209, 22, 0.3));
+}
+
+/* Suppression de la barre tricolore - design plus épuré */
+
+/* Étoile islamique à droite - utilise un span */
+.section-title .islamic-star {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 4px rgba(20, 181, 58, 0.3));
 }
 
 .card-hover:hover {
@@ -237,6 +277,16 @@ body {
     @apply aspect-square rounded-lg overflow-hidden cursor-pointer;
     transition: all var(--transition-normal);
     background: linear-gradient(45deg, var(--afmi-green), var(--afmi-gold));
+}
+
+/* CTA Don renforcé */
+.don-cta {
+    box-shadow: 0 10px 15px -3px rgba(20, 181, 58, 0.25), 0 4px 6px -4px rgba(20, 181, 58, 0.2);
+    background-image: linear-gradient(135deg, var(--afmi-green), #19c24a 60%, var(--afmi-gold));
+}
+.don-cta:hover {
+    filter: brightness(0.98);
+    transform: translateY(-2px);
 }
 
 .gallery-item:hover {
