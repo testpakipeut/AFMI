@@ -111,6 +111,51 @@ body {
     z-index: 2;
 }
 
+/* CTA Hero */
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    padding: 0 22px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 12px;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.cta-primary {
+    background: var(--afmi-green);
+    color: #fff;
+}
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
+.cta-primary:focus { outline: none; box-shadow: 0 0 0 4px rgba(20,181,58,0.35); }
+
+.cta-secondary {
+    background: #ffffff;
+    color: #0f172a;
+}
+.cta-secondary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.2); }
+.cta-secondary:focus { outline: none; box-shadow: 0 0 0 4px rgba(252,209,22,0.45); }
+
+/* Badges d'impact */
+.impact-badge {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 14px;
+    padding: 14px 16px;
+    backdrop-filter: blur(6px);
+}
+.impact-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+}
+.impact-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+}
+
 /* Bande drapeau Mali */
 /* .mali-band retirée (désactivée) */
 .mali-band { display: none; }
